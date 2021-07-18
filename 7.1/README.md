@@ -1,5 +1,7 @@
-## Creacion cluster un control plane  
-
+## Creacion cluster con un solo control plane  
+    
+![simple-cluster](images/kubernetes-avanzado-simple-cluster.png)  
+  
 1. Instalacion de container runtime(Containerd)  
 2. Instalacion kubeadl, kubectl y kubelet  
 3. Inicializacion del cluster  
