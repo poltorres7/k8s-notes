@@ -1,7 +1,7 @@
 ## Creacion cluster con un solo control plane  
-    
+
 ![simple-cluster](images/kubernetes-avanzado-simple-cluster.png)  
-  
+
 1. Instalacion de container runtime(Containerd)  
 2. Instalacion kubeadl, kubectl y kubelet  
 3. Inicializacion del cluster  
@@ -32,16 +32,16 @@ EOF
 ```  
 Aplican los cambios sin reiniciar  
 `sudo sysctl --system`  
-  
+
 Instala containerd  
 `sudo apt-get update && sudo apt-get install -y containerd`  
-  
+
 Crear configuracion para containerd  
 ```
 sudo mkdir -p /etc/containerd
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 ```  
-  
+
 Reiniciar y verificar estatus de containerd  
 ```
 sudo systemctl restart containerd
@@ -51,10 +51,10 @@ sudo systemctl status containerd
 ### Instalacion kubeadl, kubectl y kubelet  
 Deshabilitar el swap  
 `sudo swapoff -a`  
-  
+
 Deshabilita al iniciar la maquina  
 `sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab`  
-  
+
 Instalacion dependencias de kubernetes  
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl jq
@@ -77,7 +77,7 @@ Deshabilita los siguientes paquetes para que no actualicen automaticamente
 NOTA:  
 La instalacion de kubernetes y containerd se puede realizar con el siguiente script  
 `sudo sh 7.1/install-k8s.sh`  
-  
+
 ### Inicializacion de control plane  
 ```
 sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.21.0
@@ -94,12 +94,31 @@ k8s-control   NotReady   control-plane,master   8m30s   v1.21.0
 
 Instalar el addon de red calico  
 ```
+kubectl get pods -n kube-system
+NAMESPACE     NAME                                                   READY   STATUS    RESTARTS   AGE
+kube-system   coredns-558bd4d5db-bkmrd                               0/1     Pending   0          59s
+kube-system   coredns-558bd4d5db-c2hbs                               0/1     Pending   0          59s
+kube-system   etcd-1e77ed1bd01c.mylabserver.com                      1/1     Running   0          66s
+kube-system   kube-apiserver-1e77ed1bd01c.mylabserver.com            1/1     Running   1          66s
+kube-system   kube-controller-manager-1e77ed1bd01c.mylabserver.com   1/1     Running   0          66s
+kube-system   kube-proxy-chlpd                                       1/1     Running   0          59s
+kube-system   kube-scheduler-1e77ed1bd01c.mylabserver.com            1/1     Running   0          66s
+
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 kubectl get nodes
 NAME          STATUS   ROLES                  AGE     VERSION
 k8s-control   Ready    control-plane,master   9m46s   v1.21.0
-``` 
+
+kubectl get pods -n kube-system
+```
+
+Revisar contenedores corriendo en cada nodo  
+```
+ps aux | grep containerd
+sudo ctr -n k8s.io c list
+```
+
 
 ### Unir worker nodes al lcuster
 En cada worker node ejecutar  
@@ -116,6 +135,8 @@ k8s-control   Ready    control-plane,master   11m   v1.21.0
 k8s-worker1   Ready    <none>                 41s   v1.21.0
 k8s-worker2   Ready    <none>                 23s   v1.21.0
 ```
-
-
-
+Probar la instalacion  
+```
+kubectl run nginx --image=nginx
+kubectl expose pod nginx --type=NodePort --port 80
+```
