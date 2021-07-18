@@ -28,7 +28,7 @@ net.ipv4.ip_forward = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 ```  
-Aplican los cambios sin reiniciar
+Aplican los cambios sin reiniciar  
 `sudo sysctl --system`  
   
 Instala containerd  
