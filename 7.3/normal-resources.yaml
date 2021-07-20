@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: big-pod-req
+  name: normal-pod-req
 spec:
   containers:
   - name: myapp
