@@ -17,11 +17,11 @@ spec:
         - cat
         - /etc/nginx/nginx.conf
     livenessProbe:
-      initialDelaySeconds: 60
+      initialDelaySeconds: 10
       periodSeconds: 5
       timeoutSeconds: 1
       successThreshold: 1
       failureThreshold: 1
       tcpSocket:
         host:
-        port: 80
+        port: 81
