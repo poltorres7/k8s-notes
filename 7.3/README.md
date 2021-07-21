@@ -36,4 +36,10 @@ Mostar recursos de los contenedores:
 
 kubectl describe node <NODE_NAME>
 kubectl delete pod normal-pod-req -n <NAME>
+```  
+
+Probes:  
+Startup probe:  
+```
+kubectl apply -f startupProbe.yaml -n <NAME>
 ```
