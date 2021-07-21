@@ -39,9 +39,24 @@ kubectl delete pod normal-pod-req -n <NAME>
 ```  
 
 Probes:  
-Startup probe:  
+Startup probe  
 ```
 kubectl apply -f startupProbe.yaml -n <NAME>
-
 watch kubectl get pod -n <NAME>
-```
+kubectl delete po startup-exec-pod -n <NAME>
+```  
+
+  liveness Probe  
+  ```
+  kubectl apply -f livenessProbe.yaml -n <NAME>
+  watch kubectl get pods -n <NAME>
+  kubectl describe pod liveness-pod -n <NAME>  | grep Events: -A 15
+  ```  
+
+  Readiness Probe  
+  ```
+  kubectl apply -f readinessProbe.yaml -n <NAME>
+  watch kubectl get pods -n <diegoazd>  
+  kubectl describe pod readiness-pod -n <NAME>  | grep Events: -A 15
+  ¿Por que no cambia el estatus?
+  ```  
