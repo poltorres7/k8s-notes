@@ -25,14 +25,14 @@ spec:
       tcpSocket:
         host:
         port: 80
-      readinessProbe:
-        initialDelaySeconds: 2
-        periodSeconds: 5
-        timeoutSeconds: 1
-        successThreshold: 5
-        failureThreshold: 5
-        httpGet:
-          host:
-          scheme: HTTP
-          path: /
-          port: 81
+    readinessProbe:
+      initialDelaySeconds: 2
+      periodSeconds: 5
+      timeoutSeconds: 1
+      successThreshold: 5
+      failureThreshold: 5
+      httpGet:
+        host:
+        scheme: HTTP
+        path: /
+        port: 81
