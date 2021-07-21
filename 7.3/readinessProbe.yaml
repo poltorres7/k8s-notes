@@ -30,9 +30,9 @@ spec:
         periodSeconds: 5
         timeoutSeconds: 1
         successThreshold: 5
-        failureThreshold: 1
+        failureThreshold: 5
         httpGet:
           host:
           scheme: HTTP
           path: /
-          port: 80
+          port: 81

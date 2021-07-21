@@ -42,4 +42,6 @@ Probes:
 Startup probe:  
 ```
 kubectl apply -f startupProbe.yaml -n <NAME>
+
+watch kubectl get pod -n <NAME>
 ```
