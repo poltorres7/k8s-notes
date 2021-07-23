@@ -1,0 +1,11 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+ name: cerouno
+ region: us-east-1
+
+managedNodeGroups:
+- name: spot
+  instanceTypes: ["t3.medium", “t3.large”,  “m4.large”, “m5.large”, “t3a.large”]
+  spot: true
