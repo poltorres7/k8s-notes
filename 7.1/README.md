@@ -2,8 +2,8 @@
 
 ### Creacion de instancias ec2  
 #### verificar que la region sea Norte de Virginia  
-  
-![create stack](images/cloudformation.png)  
+
+![create stack](images/cloudformation-init.png)  
 Ir a CloudFormation/Create stack, seleccionar Upload a temlate file -> Choose file  
 Dar en next    
 
