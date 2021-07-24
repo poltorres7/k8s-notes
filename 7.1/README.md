@@ -8,7 +8,7 @@ Ir a CloudFormation/Create stack, seleccionar Upload a temlate file -> Choose fi
 Dar en next    
 
 ![name](images/name.png)  
-Dar un nombre al stack y agregar la [ip publica](https://www.whatsmyip.org/)  
+Dar un nombre al stack y agregar la [ip publica](https://www.whatsmyip.org/) de cada usuario  
 
 ![name](images/role.png)  
 El siguiente paso es importante, seleccionar el rol cf-role-ec2, dar en create stack  
