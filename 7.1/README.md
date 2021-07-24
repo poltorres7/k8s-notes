@@ -1,14 +1,35 @@
 ## Creacion cluster con un solo control plane  
 
-![simple-cluster](images/kubernetes-avanzado-simple-cluster.png)  
+### Creacion de instancias ec2  
+#### verificar que la region sea Norte de Virginia  
+  
+![create stack](images/cloudformation.png)  
+Ir a CloudFormation/Create stack, seleccionar Upload a temlate file -> Choose file  
+Dar en next    
 
+![name](images/name.png)  
+Dar un nombre al stack y agregar la [ip publica](https://www.whatsmyip.org/)  
+
+![name](images/role.png)  
+El siguiente paso es importante, seleccionar el rol cf-role-ec2, dar en create stack  
+
+Esperar un par de minutos en lo que se crea el stack, seleccionar outputs  
+![output](images/output.png)  
+
+En esta seccion nos muestra informacion de las ips para conectarse, conectarse a las 3 ips publicas con el siguiente comando  
+```
+ssh -i "ec2.pem" ubuntu@public-ip
+```    
+Nota: el pem debe tener los permisos 400 `sudo chmod 400 ec2.pem`  
+
+![simple-cluster](images/kubernetes-avanzado-simple-cluster.png)  
 1. Instalacion de container runtime(Containerd)  
 2. Instalacion kubeadl, kubectl y kubelet  
 3. Inicializacion del cluster  
 
 Paso 1 y 2 hay que realizarse en todos los servidores(control plane y worker nodes)  
 
-### Instalacion de container runtime   
+### Instalacion de container runtime  
 
 Crear configuracion de containerd  
 ```
@@ -16,7 +37,7 @@ cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
 EOF
-```  
+```    
 Cargar modulos  
 ```
 sudo modprobe overlay
@@ -111,8 +132,7 @@ NAME          STATUS   ROLES                  AGE     VERSION
 k8s-control   Ready    control-plane,master   9m46s   v1.21.0
 
 kubectl get pods -n kube-system
-```
-
+```  
 Revisar contenedores corriendo en cada nodo  
 ```
 ps aux | grep containerd

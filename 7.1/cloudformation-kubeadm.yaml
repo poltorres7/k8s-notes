@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Metadata:
+  License: Apache-2.0
+Description: 'AWS CloudFormation for kubeadm test'
+Parameters:
+  SSHLocation:
+    Description: Agregar ip publica para conectarse
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: (\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})
+    ConstraintDescription: must be a valid CIDR range of the form x.x.x.x/x.
+Resources:
+  KubeMaster:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.small
+      SecurityGroups: [!Ref 'EC2SecurityGroup']
+      KeyName: cerouno-kubeadm
+      ImageId: ami-0747bdcabd34c712a
+      BlockDeviceMappings:
+      - DeviceName: /dev/sdc
+        VirtualName: ephemeral0
+  Worker1:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.small
+      SecurityGroups: [!Ref 'EC2SecurityGroup']
+      KeyName: cerouno-kubeadm
+      ImageId: ami-0747bdcabd34c712a
+      BlockDeviceMappings:
+      - DeviceName: /dev/sdc
+        VirtualName: ephemeral0
+  Worker2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t3.small
+      SecurityGroups: [!Ref 'EC2SecurityGroup']
+      KeyName: cerouno-kubeadm
+      ImageId: ami-0747bdcabd34c712a
+      BlockDeviceMappings:
+      - DeviceName: /dev/sdc
+        VirtualName: ephemeral0
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: SSH access
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: !Ref 'SSHLocation'
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '65535'
+        CidrIp: 172.31.0.0/16
+Outputs:
+  KubeMaster:
+    Value: !GetAtt [KubeMaster, PublicIp]
+    Description: Master PublicIp
+  KubeMasterPrivateIp:
+    Value: !GetAtt [KubeMaster, PrivateIp]
+    Description: Master PrivateIp
+  Worker1PublicIp:
+    Value: !GetAtt [Worker1, PublicIp]
+    Description: Worker1 PublicIp
+  Worker1PriveteIp:
+    Value: !GetAtt [Worker1, PrivateIp]
+    Description: Worker1 PrivateIp
+  Worker2PublicIp:
+    Value: !GetAtt [Worker2, PublicIp]
+    Description: Worker2 PublicIp
+  Worker2PriveteIp:
+    Value: !GetAtt [Worker2, PrivateIp]
+    Description: Worker2 PrivateIp
