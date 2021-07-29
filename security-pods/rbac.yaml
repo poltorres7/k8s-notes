@@ -37,7 +37,7 @@ subjects:
   namespace: sa-rbac
 roleRef:
   kind: Role
-  name: shared-sa-role
+  name: sa-role
   apiGroup: rbac.authorization.k8s.io
 
 ---
