@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-demo
+spec:
+  securityContext:
+    runAsUser: 2000
+    fsGroup: 3000
+  containers:
+  - name: sc-demo
+    image: diegoazd/security-context-demo
+    command: ['sh', '-c', 'while true; do date >> /etc/message/message.txt && sleep 5 ; done;']
