@@ -39,3 +39,38 @@ roleRef:
   kind: Role
   name: shared-sa-role
   apiGroup: rbac.authorization.k8s.io
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deployment-viewer-pod-<NAME>
+  namespace: sa-rbac
+spec:
+  serviceAccountName: shared-sa
+  containers:
+  - name: busybox
+    image: radial/busyboxplus:curl
+    command: ['sh', '-c', 'sleep 3600;']
+    volumeMounts:
+    - name: scripts-volume
+      mountPath: /root/scripts
+  volumes:
+  - name: scripts-volume
+    configMap:
+      name: scripts-cm
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scripts-cm
+  namespace: sa-rbac
+data:
+  deployment.sh: |
+    #! /bin/bash
+    TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+    curl -s -k -m 3 -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc.cluster.local/api/v1/namespaces/sa-rbac/deployments/
+  pod.sh: |
+    #! /bin/bash
+    TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+    curl -s -k -m 3 -H "Authorization: Bearer $TOKEN" https://kubernetes.default.svc.cluster.local/api/v1/namespaces/sa-rbac/pods/
