@@ -44,7 +44,7 @@ roleRef:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: deployment-viewer-pod-<NAME>
+  name: deployment-viewer-pod
   namespace: sa-rbac
 spec:
   serviceAccountName: shared-sa
