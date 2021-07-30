@@ -10,4 +10,12 @@ spec:
   - name: sc-failed-demo
     image: diegoazd/security-context-demo
     command: ['sh', '-c', 'while true; do date >> /etc/message/message.txt && sleep 5 ; done;']
-    restartPolicy: Always
+    livenessProbe:
+      initialDelaySeconds: 1
+      periodSeconds: 5
+      successThreshold: 1
+      failureThreshold: 1
+      exec:
+        command:
+        - date >> /etc/message/message.txt
+  restartPolicy: Always

@@ -5,3 +5,4 @@
 7.3 [Ciclo de vida de los pods](resources/README.md)  
 7.4 [kubectl tips](7.4/Kubectl-tips.md)  
 7.5 [Contenedores RBAC](security-pods/Rbac.md)  
+7.5 [Security Context](security-pods/SecurityContext.md)  
