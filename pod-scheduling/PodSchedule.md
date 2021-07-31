@@ -42,5 +42,18 @@ kubectl label node NODE_NAME curso-
 ```
 # Revisar el archivo pod-affinity.yaml ¿Que hace el deployment?
 # Reemplazar la etiqueta <NAME>
-kubectl apply -f pod-affinity.yaml
+kubectl apply -f pod-affinity.yaml  
+
+# ¿Se asignaron los pods a de redis y nginx al mismo nodo?
+kubectl get pod <REDIS_PODNAME> -o jsonpath='{.spec.nodeName}'
+kubectl get pod <WEBSERVER_PODNAME>  -o jsonpath='{.spec.nodeName}'
+
+kubectl describe node <NODE_NAME>
+```  
+
+####  Taint y Tolerations  
+
+```
+kubectl taint nodes <NODE_NAME> env=staging:NoSchedule  
+# Abrir el archivo tolerations.yaml, reemplazar <NAME>
 ```
