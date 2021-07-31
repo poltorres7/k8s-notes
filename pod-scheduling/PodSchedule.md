@@ -25,4 +25,22 @@ kubectl get nodes
 #Editar el archivo node-name con cualquier node name y reemplazar <NAME>
 kubectl apply -f node-name.yaml
 kubectl get pod nginx-<NAME> -o jsonpath='{.spec.nodeName}'
+```  
+
+#### Node Affinity  
+
+```
+#Editar el archivo y reemplazar <NAME>
+kubectl apply -f node-affinity.yaml
+
+#Eliminar PODS, eliminar label y agregar la etiqueta curso:CEROUNO a un node que este en la zona us-east-1b
+kubectl label node NODE_NAME curso-
+```  
+
+#### Inter podAffinity/podAntiAffinity  
+
+```
+# Revisar el archivo pod-affinity.yaml ¿Que hace el deployment?
+# Reemplazar la etiqueta <NAME>
+kubectl apply -f pod-affinity.yaml
 ```
