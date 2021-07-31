@@ -24,4 +24,5 @@ kubectl label node NODE_NAME curso=CEROUNO
 kubectl get nodes
 #Editar el archivo node-name con cualquier node name y reemplazar <NAME>
 kubectl apply -f node-name.yaml
+kubectl get pod nginx-<NAME> -o jsonpath='{.spec.nodeName}'
 ```
