@@ -52,4 +52,4 @@ Desplegar sc-failed-demo.yaml
 ```
 kubectl apply -f sc-failed-demo.yaml
 kubectl logs sc-failed-demo
-  ```
+```

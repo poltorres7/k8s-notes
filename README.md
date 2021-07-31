@@ -6,3 +6,4 @@
 7.4 [kubectl tips](7.4/Kubectl-tips.md)  
 7.5 [Contenedores RBAC](security-pods/Rbac.md)  
 7.5 [Security Context](security-pods/SecurityContext.md)  
+7.5 [Pod scheduling](pod-scheduling/PodSchedule.md)  
