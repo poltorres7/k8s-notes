@@ -55,5 +55,11 @@ kubectl describe node <NODE_NAME>
 
 ```
 kubectl taint nodes <NODE_NAME> env=staging:NoSchedule  
+kubectl taint nodes <NODE_NAME> team=qa:NoSchedule  
 # Abrir el archivo tolerations.yaml, reemplazar <NAME>
-```
+kubectl apply -f tolerations.yaml
+kubectl describe node $(kubectl get pod nginx-<NAME>  -o jsonpath='{.spec.nodeName}')
+
+#¿Se asigno al nodo con los taints?
+# Agregar el toleration team=qa
+```  
