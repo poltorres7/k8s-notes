@@ -8,7 +8,7 @@ kubectl get nodes --label-columns=eks.amazonaws.com/capacityType
 kubectl get nodes --label-columns=eks.amazonaws.com/capacityType --selector=eks.amazonaws.com/capacityType=SPOT
 ```  
 
-Editar el archivo nginx-spot.yaml y reeamplazar <name>  
+Editar el archivo nginx-spot.yaml y reeamplazar <NAME>  
 ```
 kubectl apply -f nginx-spot.yaml  
 

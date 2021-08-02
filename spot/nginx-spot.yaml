@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-spot-diegoazd
+  name: nginx-spot-<NAME>
   labels:
     app: nginx
-spec:    
+spec:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
