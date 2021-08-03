@@ -1,3 +1,4 @@
 .gitattributes !filter !diff
 git-crypt/secret.yaml filter=git-crypt diff=git-crypt
+git-crypt/secret2.yaml filter=git-crypt
 
