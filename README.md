@@ -6,4 +6,4 @@
 7.5 [Contenedores RBAC](security-pods/Rbac.md)  
 7.6 [Security Context](security-pods/SecurityContext.md)  
 7.7 [Pod scheduling](pod-scheduling/PodSchedule.md)  
-7.8 [sops](Sops/Sops.md)  
+7.8 [sops](sops/Sops.md)  
