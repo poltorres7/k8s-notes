@@ -12,6 +12,8 @@ sudo wget https://cbs.centos.org/kojifiles/packages/git-crypt/0.5.0/1.el7/x86_64
 sudo rpm -ivh git-crypt-0.5.0–1.el7.x86_64.rpm
 git-crypt version
 ```  
+- osx
+`brew install git-crypt`  
 
 ### Uso  
 Ir a la de kubernetes_avanzado
