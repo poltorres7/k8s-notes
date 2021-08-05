@@ -7,3 +7,4 @@
 7.6 [Security Context](security-pods/SecurityContext.md)  
 7.7 [Pod scheduling](pod-scheduling/PodSchedule.md)  
 7.8 [sops](sops/Sops.md)  
+7.9 [git-crypt](git-crypt/Git-crypt.md)  
