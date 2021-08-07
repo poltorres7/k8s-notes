@@ -122,3 +122,8 @@ velero restore create --from-backup nginx-backup-<NAME>
 ```  
 Ir a s3 para validar usuario creado    
 ![alt s3](images/velero-s3.png)  
+
+### Velero schedule  
+`velero schedule create nginx-schedule-<NAME> --schedule="@every 24h" --include-namespaces <NAME>`  
+
+Nota schedule puede ser el formato cron: `--schedule="0 */6 * * *"`
