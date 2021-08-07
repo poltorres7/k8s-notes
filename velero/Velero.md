@@ -119,6 +119,6 @@ velero backup describe nginx-backup-<NAME>
 
 kubectl delete namespaces <NAME>
 velero restore create --from-backup nginx-backup-<NAME>
-
-
-```
+```  
+Ir a s3 para validar usuario creado    
+![alt s3](images/velero-s3.png)  
