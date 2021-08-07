@@ -6,9 +6,10 @@
 - linux  
 ```
 Descargar la ultima version
-wget https://github.com/vmware-tanzu/velero/releases/tag/v1.6.2
-tar -xvf <RELEASE-TARBALL-NAME>.tar.gz
-Extraer el binario hacia el PATH /usr/local/bin
+wget https://github.com/vmware-tanzu/velero/releases/download/v1.6.2/velero-v1.6.2-linux-amd64.tar.gz
+tar -xvf velero-v1.6.2-linux-amd64.tar.gz
+cd velero-v1.6.2-linux-amd64/
+sudo mv velero /usr/local/bin/
 ```  
 - Windows - Chocolatey  
 `choco install velero`  
@@ -18,7 +19,7 @@ Extraer el binario hacia el PATH /usr/local/bin
 
 crear bucket para respaldar velero:
 ```
-aws s3 mb s3://<S3_BUCKET_NAME> --region eu-central-1 --profile cerouno
+aws s3 mb s3://<S3_BUCKET_NAME> --region eu-east-1 --profile cerouno
 aws s3api get-bucket-location --bucket <S3_BUCKET_NAME>
 ```  
 
@@ -82,7 +83,14 @@ eksctl create iamserviceaccount --cluster=cerouno --name=veleros3 --namespace=ve
 
 #### Instalacion Velero  
 ```
-Agregar los siguientes valores a la configuracion
+# Agregar los siguientes valores a la configuracion
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.2.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
 configuration:
   provider: aws
   backupStorageLocation:
@@ -93,11 +101,24 @@ serviceAccount:
     name: veleros3
 
 
-kubectl create namespace velero
 helm repo add vmware-tanzu https://vmware-tanzu.github.io/helm-charts
+helm repo update
 helm upgrade --install velero vmware-tanzu/velero \
-  --namespace $NAMESPACE \
+  --namespace velero \
   -f values.yaml
 # Verificar la instalacion
 kubectl get all -n velero
+```  
+
+#### Uso velero  
+```
+kubectl create ns <NAME>
+kubectl apply -f nginx-base.yaml -n <NAME>
+velero backup create nginx-backup-<NAME> --include-namespaces <NAME>
+velero backup describe nginx-backup-<NAME>
+
+kubectl delete namespaces <NAME>
+velero restore create --from-backup nginx-backup-<NAME>
+
+
 ```
