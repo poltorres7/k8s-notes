@@ -75,8 +75,9 @@ aws iam create-policy \
 #### Crear IRSA  
 ![alt IRSA](images/IRSA.png)  
 ```
-eksctl utils associate-iam-oidc-provider --cluster=<clusterName>
-eksctl create iamserviceaccount --cluster=<clusterName> --name=veleros3 --namespace=velero --attach-policy-arn=<policyARN>
+eksctl utils associate-iam-oidc-provider --cluster=cerouno --approve
+kubectl create ns velero
+eksctl create iamserviceaccount --cluster=cerouno --name=veleros3 --namespace=velero --attach-policy-arn=arn:aws:iam::<AWS_ACCOUNT_ID>:policy/VeleroBackupPolicy --approve
 ```  
 
 #### Instalacion Velero  
