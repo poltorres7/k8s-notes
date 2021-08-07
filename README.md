@@ -8,3 +8,4 @@
 7.7 [Pod scheduling](pod-scheduling/PodSchedule.md)  
 7.8 [sops](sops/Sops.md)  
 7.9 [git-crypt](git-crypt/Git-crypt.md)  
+7.10 [velero](git-crypt/Git-crypt.md)  
