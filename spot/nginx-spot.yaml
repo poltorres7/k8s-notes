@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-spot-<NAME>
+  name: nginx-spot
   labels:
     app: nginx
 spec:

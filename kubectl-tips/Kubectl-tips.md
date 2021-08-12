@@ -11,12 +11,11 @@
 ```
 kubectl create ns <NAME>
 
-cat << EOF | kubectl apply -f -
+cat << EOF | kubectl apply -n <NAME> -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  namespace: diegoazd
+  name: nginx-deployment  
   labels:
     app: nginx
 spec:
@@ -38,7 +37,7 @@ EOF
 
 kubectl delete deployment nginx-deployment -n <NAME>
 
-cat nginx.yaml | sed 's/<NAME>/diegoazd/g' | kubectl apply -f -
+kubectl apply -f nginx.yaml -n <NAME>
 
 kubectl create deployment nginx -n <NAME> --image=nginx:1.14.2 --dry-run -o yaml > name.yaml
 ```  

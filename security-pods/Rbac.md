@@ -3,7 +3,7 @@ Revisar el archivo [rbac.yaml](https://raw.githubusercontent.com/diegoazd/kubern
 
 Desplegar el archvo rbac.yaml  
 ```
-kubectl apply -f rbac.yaml
+kubectl apply -f rbac.yaml -n <NAME>
 kubect api resources -o wide
 kubectl explain deployments  
 ```  
@@ -13,7 +13,7 @@ Referencia del [api de kubernetes](https://kubernetes.io/docs/reference/using-ap
 
 Entrar al pod  
 ```
-kubectl exec -it viewer-pod -n sa-rbac /bin/sh
+kubectl exec -it viewer-pod -n <NAME> /bin/sh
 #Ir a /root/scripts
 cd /root/scripts
 ls

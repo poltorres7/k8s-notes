@@ -37,12 +37,12 @@ root wheel
 
 #### Security context  
 - Ver el archivo sc-demo.yaml  
-- Verl el archivo sc-failed-demo.yaml  
+- Ver el archivo sc-failed-demo.yaml  
 
 Desplegar sc-demo.yaml y conectarse al pod  
 ```
-kubectl apply -f sc-demo.yaml
-kubectl exec -it sc-demo /bin/bash
+kubectl apply -f sc-demo.yaml -n <NAME>
+kubectl exec -it sc-demo -n <NAME> /bin/bash
 #Dentro del contenedor ver los permisos del archivo y los usuarios del contenedor
 ls -la /etc/message
 cat /etc/passwd
@@ -50,6 +50,6 @@ cat /etc/passwd
 
 Desplegar sc-failed-demo.yaml  
 ```
-kubectl apply -f sc-failed-demo.yaml
-kubectl logs sc-failed-demo
+kubectl apply -f sc-failed-demo.yaml -n <NAME>
+kubectl logs sc-failed-demo -n <NAME>
 ```

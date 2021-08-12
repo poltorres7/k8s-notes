@@ -38,7 +38,7 @@ export SOPS_KMS_ARN="arn:aws:kms:us-east-1:ACCOUNT_ID:key/920aff2e-c5f1-4040-943
 # Verificar que estemos en la cuenta correcta:  
 aws sts get-caller-identity --output text --query 'Account'   
 ```
-  
+
 Uso de sops  
 ```
 sops --encrypt secret.yaml > secret.sops.yaml
