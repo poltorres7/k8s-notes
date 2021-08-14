@@ -1,3 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: <SVC_ADDR>
+    http:
+      paths:
+      - path: /
+        pathType: "Prefix"
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
