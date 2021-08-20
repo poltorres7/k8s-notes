@@ -158,5 +158,4 @@ k8s-worker2   Ready    <none>                 23s   v1.21.0
 Probar la instalacion  
 ```
 kubectl run nginx --image=nginx
-kubectl expose pod nginx --type=NodePort --port 80
 ```
