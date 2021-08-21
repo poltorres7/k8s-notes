@@ -39,7 +39,7 @@ kubectl delete deployment nginx-deployment -n <NAME>
 
 kubectl apply -f nginx.yaml -n <NAME>
 
-kubectl create deployment nginx -n <NAME> --image=nginx:1.14.2 --dry-run -o yaml > name.yaml
+kubectl create deployment nginx -n <NAME> --image=nginx:1.14.2 --dry-run=client -o yaml > name.yaml
 ```  
 
 #### Busqueda de recursos  
@@ -154,13 +154,13 @@ kubectl get pods POD_NAME -o=jsonpath='{.status.conditions[?(@.type!="Ready")]}'
 # Mostar todos los pods filtrando por label app=nginx
 kubectl get pods --selector=app=nginx -n <NAME>
 
-kubectl label pods POD_NAME version=v1 -n <NAME>
+kubectl get pods --show-labels -n <NAME>
+kubectl label pods POD_NAME version=v1 -n <NAME>  
 kubectl get pods --selector='!version' -n <NAME>
 
 #Ver todos los eventos en todos los namespaces
 kubectl get events --sort-by=.metadata.creationTimestamp -A
-
-```
+```  
 
 Actualizacion de recursos
 ```
