@@ -1,5 +1,5 @@
 # Kubernetes avanzado  
-7.0 [Preparacion](login-eks/README.md)
+7.0 [Preparacion](login-eks/README.md)  
 7.1 [Creacion cluster con kubeadm](kubeadm/README.md)  
 7.2 [Cluster eks con instancias spot](spot/Spot.md)  
 7.3 [kubectl tips](kubectl-tips/Kubectl-tips.md)  
