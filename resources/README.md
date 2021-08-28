@@ -5,7 +5,7 @@ Utilerias:
 Crear namespace de trabajo y desplegar big-resources
 ```
 kubectl create ns <NAME>
-kubectl apply -f big-resources.yaml -n diegoazd
+kubectl apply -f big-resources.yaml -n <NAME>
 ```  
 
 Revisar fase y status del Pod  
@@ -27,8 +27,8 @@ kubectl describe po normal-pod-req -n <NAME> | grep Containers: -A12
 kubectl get po normal-pod-req -n <NAME> -o json | jq .status.containerStatuses
 
 Mostar recursos de los contenedores:
- kubectl get po normal-pod-req -n diegoazd -o json | jq .spec.containers[].resources
- kubectl get pod -n diegoazd -o yaml | grep spec: -A15
+ kubectl get po normal-pod-req -n <NAME> -o json | jq .spec.containers[].resources
+ kubectl get pod -n <NAME> -o yaml | grep spec: -A15
 
  kubectl get pod -n <NAME> -o yaml | grep nodeName
  kubectl get pod -n <NAME> -o json | grep nodeName
@@ -56,7 +56,7 @@ kubectl delete po startup-exec-pod -n <NAME>
   Readiness Probe  
   ```
   kubectl apply -f readinessProbe.yaml -n <NAME>
-  watch kubectl get pods -n <diegoazd>  
+  watch kubectl get pods -n <NAME>  
   kubectl describe pod readiness-pod -n <NAME>  | grep Events: -A 15
   ¿Por que no cambia el estatus?
   ```  

@@ -31,7 +31,13 @@ kubectl get pod nginx -o jsonpath='{.spec.nodeName}' -n <NAME>
 ```
 kubectl apply -f node-affinity.yaml -n <NAME>
 
+#¿Que nodo se asigno?
+kubectl get nodes $( kubectl get pod nginx -o jsonpath='{.spec.nodeName}' -n <NAME>) --show-labels
+
 #Eliminar PODS, eliminar label y agregar la etiqueta curso:CEROUNO a un node que este en la zona us-east-1b
+kubectl get nodes -l topology.kubernetes.io/zone=us-east-1b
+kubectl label node NODE_NAME curso=CEROUNO
+kubectl get nodes $( kubectl get pod nginx -o jsonpath='{.spec.nodeName}' -n <NAME>) --show-labels
 kubectl label node NODE_NAME curso-
 ```  
 

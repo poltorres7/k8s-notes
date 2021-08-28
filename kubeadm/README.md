@@ -8,10 +8,10 @@ Ir a CloudFormation/Create stack, seleccionar Upload a temlate file -> Choose fi
 Dar en next    
 
 ![name](images/name.png)  
-Dar un nombre al stack y agregar la [ip publica](https://www.whatsmyip.org/) de cada usuario  
+Dar un nombre al stack y agregar la [ip publica](https://www.whatsmyip.org/)
 
 ![name](images/role.png)  
-El siguiente paso es importante, seleccionar el rol cf-role-ec2, dar en create stack  
+En un ambiente de aws donde no se tienen permisos suficientes para crear los recursos se usan roles, seleccionar el rol cf-role-ec2, dar en create stack  
 
 Esperar un par de minutos en lo que se crea el stack, seleccionar outputs  
 ![output](images/output.png)  
@@ -24,7 +24,7 @@ Nota: el pem debe tener los permisos 400 `sudo chmod 400 ec2.pem`
 
 ![simple-cluster](images/kubernetes-avanzado-simple-cluster.png)  
 1. Instalacion de container runtime(Containerd)  
-2. Instalacion kubeadl, kubectl y kubelet  
+2. Instalacion kubeadm, kubectl y kubelet  
 3. Inicializacion del cluster  
 
 Paso 1 y 2 hay que realizarse en todos los servidores(control plane y worker nodes)  

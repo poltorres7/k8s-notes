@@ -8,7 +8,7 @@ helm install ingress-nginx ingress-nginx/ingress-nginx
 ```  
 
 Editar microservices.yaml y reemplazar la etiqueta <SVC_ADDR> por la direccion del load balancer  
-`kubectl apply -f microservices.yaml -n <NAME>`  
+`kubectl apply -f microservices.yaml`  
 
 Revisar instalacion  
 ```
